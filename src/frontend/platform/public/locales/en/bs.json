@@ -1,5 +1,5 @@
 {
-  "title": "BISHENG",
+  "title": "Laiye Agents Platform",
   "prompt": "Confirmation",
   "login": {
     "slogen": "Convenient, Flexible, Reliable Enterprise-Level Large Model Application Development Platform",
@@ -354,14 +354,14 @@
     "inputPlaceholder": "Input Placeholder",
     "inputPlaceholderPlaceholder": "Send message to XX",
     "appCenterWelcome": "App Center Welcome Message",
-    "appCenterWelcomePlaceholder": "Explore BISHENG's Agents",
+    "appCenterWelcomePlaceholder": "Explore Laiye's Agents",
     "appCenterDescription": "App Center Description",
     "appCenterDescriptionPlaceholder": "You can select the required agents here for production and work",
     "modelManagement": "Dialogue Model Management",
     "maxTokens": "Knowledge Base/Web Search Result Max Characters",
     "maxTokensPlaceholder": "Maximum characters supported by the model",
     "systemPrompt": "System Prompt",
-    "systemPromptPlaceholder": "You are BISHENG intelligent Q&A assistant, your task is to answer user questions.\nWhen answering, please note the following:\n- Current time is {cur_date}.\n- Do not disclose any sensitive information, answers should be based on general knowledge and logic.\n- Ensure answers do not violate laws, regulations, moral standards and public order.",
+    "systemPromptPlaceholder": "You are Laiye intelligent Q&A assistant, your task is to answer user questions.\nWhen answering, please note the following:\n- Current time is {cur_date}.\n- Do not disclose any sensitive information, answers should be based on general knowledge and logic.\n- Ensure answers do not violate laws, regulations, moral standards and public order.",
     "knowledgeBase": "Personal Knowledge",
     "knowledgeBasePrompt": "Personal Knowledge Base Search Prompt",
     "fileUpload": "File Upload",
