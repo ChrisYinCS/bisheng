@@ -10,7 +10,6 @@ services:
       MYSQL_DATABASE: bisheng
       TZ: Asia/Shanghai
     volumes:
-      - ${DOCKER_VOLUME_DIRECTORY:-.}/mysql/conf/my.cnf:/etc/mysql/my.cnf
       - ${DOCKER_VOLUME_DIRECTORY:-.}/mysql/data:/var/lib/mysql
     healthcheck:
       test: ["CMD-SHELL", "exit | mysql -u root -p$$MYSQL_ROOT_PASSWORD"]
@@ -24,7 +23,7 @@ services:
     container_name: bisheng-redis
     image: redis:7.0.4
     ports:
-      - "6379:6379"
+      - "16379:6379"
     environment:
       TZ: Asia/Shanghai
     volumes:
@@ -109,7 +108,7 @@ services:
 
   frontend:
     container_name: bisheng-frontend
-    image: dataelement/bisheng-frontend:v2.3.0-beta1
+    image: dataelement/bisheng-frontend:oem-custom-v8
     ports:
       - "3001:3001"
     environment:

@@ -464,7 +464,7 @@ const useChatConfig = (refs: UseChatConfigProps, parentFormData, parentSetFormDa
     const [formData, setFormData] = useState<ChatConfigForm>(parentFormData || {
         menuShow: true,
 
-        systemPrompt: "你是BISHENG智能问答助手，你的任务是根据用户问题进行回答。在回答时，请注意以下几点：- 当前时间是{cur_date}。- 不要泄露任何敏感信息，回答应基于一般性知识和逻辑。- 确保回答不违反法律法规、道德准则和公序良俗。",
+        systemPrompt: "你是LAIYE智能问答助手，你的任务是根据用户问题进行回答。在回答时，请注意以下几点：- 当前时间是{cur_date}。- 不要泄露任何敏感信息，回答应基于一般性知识和逻辑。- 确保回答不违反法律法规、道德准则和公序良俗。",
         sidebarIcon: { enabled: true, image: '', relative_path: '' },
         assistantIcon: { enabled: true, image: '', relative_path: '' },
         sidebarSlogan: '',
@@ -537,7 +537,7 @@ const useChatConfig = (refs: UseChatConfigProps, parentFormData, parentSetFormDa
             getWorkstationConfigApi().then((res) => {
                 if (res) {
                     // 确保 systemPrompt 有值
-                    const defaultSystemPrompt = `你是BISHENG智能问答助手，你的任务是根据用户问题进行回答。
+                    const defaultSystemPrompt = `你是LAIYE智能问答助手，你的任务是根据用户问题进行回答。
 在回答时，请注意以下几点：
 - 当前时间是{cur_date}。
 - 不要泄露任何敏感信息，回答应基于一般性知识和逻辑。
@@ -782,7 +782,7 @@ const useChatConfig = (refs: UseChatConfigProps, parentFormData, parentSetFormDa
             welcomeMessage: formData.welcomeMessage.trim(),
             functionDescription: formData.functionDescription.trim(),
             inputPlaceholder: formData.inputPlaceholder.trim(),
-            applicationCenterWelcomeMessage: formData.applicationCenterWelcomeMessage.trim() || '探索BISHENG的智能体',
+            applicationCenterWelcomeMessage: formData.applicationCenterWelcomeMessage.trim() || '探索LAIYE的智能体',
             applicationCenterDescription: formData.applicationCenterDescription.trim() || '您可以在这里选择需要的智能体来进行生产与工作~',
             maxTokens: formData.maxTokens || 15000,
         };

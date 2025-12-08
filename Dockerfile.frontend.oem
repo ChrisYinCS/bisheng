@@ -1,0 +1,39 @@
+FROM dataelement/bisheng-frontend:v2.3.0-beta1
+
+# Copy modified assets
+COPY src/frontend/platform/public/assets/bisheng/favicon.ico /usr/share/nginx/html/platform/assets/bisheng/favicon.ico
+COPY src/frontend/platform/public/assets/bisheng/login-logo-big.png /usr/share/nginx/html/platform/assets/bisheng/login-logo-big.png
+COPY src/frontend/platform/public/assets/bisheng/login-logo-dark.png /usr/share/nginx/html/platform/assets/bisheng/login-logo-dark.png
+COPY src/frontend/platform/public/assets/bisheng/login-logo-small.png /usr/share/nginx/html/platform/assets/bisheng/login-logo-small.png
+COPY src/frontend/platform/public/assets/bisheng/logo-small-dark.png /usr/share/nginx/html/platform/assets/bisheng/logo-small-dark.png
+COPY src/frontend/platform/public/assets/bisheng/logo.jpeg /usr/share/nginx/html/platform/assets/bisheng/logo.jpeg
+
+# Copy favicon to client root directory for workspace pages
+COPY src/frontend/platform/public/assets/bisheng/favicon.ico /usr/share/nginx/html/client/favicon.ico
+
+# Copy modified localization files
+COPY src/frontend/platform/public/locales/en/bs.json /usr/share/nginx/html/platform/locales/en/bs.json
+COPY src/frontend/platform/public/locales/zh/bs.json /usr/share/nginx/html/platform/locales/zh/bs.json
+
+# Copy modified client translation files
+COPY src/frontend/client/src/locales/en/translation.json /usr/share/nginx/html/client/locales/en/translation.json
+COPY src/frontend/client/src/locales/zh-Hans/translation.json /usr/share/nginx/html/client/locales/zh-Hans/translation.json
+COPY src/frontend/client/src/locales/zh-Hant/translation.json /usr/share/nginx/html/client/locales/zh-Hant/translation.json
+COPY src/frontend/client/src/locales/fr/translation.json /usr/share/nginx/html/client/locales/fr/translation.json
+COPY src/frontend/client/src/locales/ja/translation.json /usr/share/nginx/html/client/locales/ja/translation.json
+
+# Update client index.html title and favicon
+RUN sed -i 's/<title>BISHENG<\/title>/<title>来也智能体平台<\/title>/' /usr/share/nginx/html/client/index.html && \
+    sed -i 's/<meta name="description" content="Deepseek - An open source chat application with support for multiple AI models" \/>/<meta name="description" content="来也智能体平台 - 便捷、灵活、可靠的企业级大模型应用开发平台" \/>/' /usr/share/nginx/html/client/index.html && \
+    sed -i 's/<title>来也智能体平台<\/title>/<title>来也智能体平台<\/title>\n  <link rel="icon" href="\/favicon.ico" \/>/' /usr/share/nginx/html/client/index.html
+
+# Inject inline script for dynamic title switching based on language
+RUN sed -i '/<\/head>/i \  <script>\n    // Dynamic title update based on language\n    (function() {\n      const titles = {\n        '\''zh-Hans'\'': '\''来也智能体平台'\'',\n        '\''zh-Hant'\'': '\''來也智能體平台'\'',\n        '\''en'\'': '\''Laiye Agents Platform'\'',\n        '\''fr'\'': '\''Laiye Agents Platform'\'',\n        '\''ja'\'': '\''Laiyeエージェントプラットフォーム'\''\n      };\n\n      function updateTitle() {\n        const lang = localStorage.getItem('\''i18nextLng'\'') || navigator.language || '\''en'\'';\n        const titleKey = lang.startsWith('\''zh'\'') ? lang : lang.split('\''-'\'')[0];\n        const newTitle = titles[titleKey] || titles['\''en'\''];\n\n        if (document.title !== newTitle) {\n          document.title = newTitle;\n        }\n      }\n\n      // Update title immediately\n      updateTitle();\n\n      // Listen for language changes\n      window.addEventListener('\''storage'\'', function(e) {\n        if (e.key === '\''i18nextLng'\'') {\n          updateTitle();\n        }\n      });\n\n      // Also listen for custom events from i18next\n      window.addEventListener('\''languageChanged'\'', updateTitle);\n\n      // Periodic check as fallback\n      setInterval(updateTitle, 1000);\n    })();\n  <\/script>' /usr/share/nginx/html/client/index.html
+
+# Copy Office configuration files
+COPY docker-oem/office/bisheng/ /usr/share/nginx/html/office/
+
+# Keep the same nginx configuration
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

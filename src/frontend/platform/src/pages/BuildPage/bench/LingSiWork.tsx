@@ -144,7 +144,7 @@ export default function index({ formData: parentFormData, setFormData: parentSet
         sidebarSlogan: '',
         welcomeMessage: '',
         functionDescription: '',
-        inputPlaceholder: '请输入你的任务目标，然后交给 BISHENG 灵思',
+        inputPlaceholder: '请输入你的任务目标，然后交给LAIYE灵思',
         models: [],
         maxTokens: 15000,
         voiceInput: {
