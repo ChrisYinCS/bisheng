@@ -1,3 +1,4 @@
+## 基础信息
 - 当前工程为从一个git开源工程fork出的新功能，基于此工程做OEM、功能修改等。以下为注意事项：
     - 调试时在本地使用docker compose方式进行，本地已经安装好docker desktop。重启容器时，请尽量只重启必要的容器，不要docker compose down然后再启动所有容器，除非必须这么做
     - docker部署文件的修改请在 ./docker-oem文件夹下进行，它是官方安装文件 ./docker 的一个复制。请不要修改 ./docker中的任何内容，它只能被用来作为官方部署方式的参考。
@@ -8,3 +9,8 @@
         - 产品需要登录，如果要检查登录后的页面，可以先打开页面，请求用户手动登录，然后再进行后续的页面检查
         - 使用snapshot工具获取了内容到本地，并且阅读了文档内容之后，请主动删除这些txt文件
 - 你在本地工作的环境为Windows，请使用powershell命令执行一些系统操作，例如powershell -Command "具体的命令"以避免错误
+
+## 工程信息
+- Template Storage: The templates are stored in /src/backend/bisheng/database/data/template.json and loaded into the database during initialization (see init_data.py line 92-95).
+- Language Configuration: The frontend is configured to use Chinese by default (see i18n.js line 17: lng: 'zh'), although it supports English and other languages.
+- Template Display: Templates are displayed via the API endpoint /api/v1/skill/template which reads from the database table template.
