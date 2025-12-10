@@ -176,12 +176,12 @@ function CreateModal({ datalist, open, onOpenChange, onLoadEnd, mode = 'create',
             await captureAndAlertRequestErrorHoc(updateKnowledge(data).then(res => {
                 toast({
                     variant: "success",
-                    description: '更新成功'
+                    description: t('updateSuccess')
                 })
                 onOpenChange(false); // 修复：用onOpenChange关闭弹窗（替代原setOpen）
                 onLoadEnd()
             }).catch(error => {
-                toast({ variant: "error", description: error || '更新失败，请重试' });
+                toast({ variant: "error", description: error || t('updateFailed') });
                 onOpenChange(false); // 错误时也关闭弹窗，避免状态卡住
             })).finally(() => {
                 setIsSubmitting(false)
@@ -199,7 +199,7 @@ function CreateModal({ datalist, open, onOpenChange, onLoadEnd, mode = 'create',
     return <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-[625px]">
             <DialogHeader>
-                <DialogTitle>{mode === 'create' ? t('lib.createLibrary',{ ns: 'bs' }) : '知识库设置'}</DialogTitle>
+                <DialogTitle>{mode === 'create' ? t('lib.createLibrary',{ ns: 'bs' }) : t('knowledgeSettings')}</DialogTitle>
             </DialogHeader>
             <div className="flex flex-col gap-4 py-2">
                 {mode === 'edit' && currentLib && (
@@ -228,22 +228,22 @@ function CreateModal({ datalist, open, onOpenChange, onLoadEnd, mode = 'create',
                     />
                 </div>
                 <div className="">
-                    <label htmlFor="desc" className="bisheng-label">知识库描述</label>
+                    <label htmlFor="desc" className="bisheng-label">{t('desc')}</label>
                     <Textarea
                         id="desc"
                         ref={descRef}
                         defaultValue={mode === 'edit' && currentLib ? currentLib.description : ''}
-                        placeholder="请输入知识库描述"
+                        placeholder={t('descPlaceholder')}
                         rows={8}
                         className={`col-span-3 ${error.desc && 'border-red-400'}`}
                     />
                 </div>
                 <div className="">
-                    <label htmlFor="model" className="bisheng-label">知识库embedding模型选择</label>
+                    <label htmlFor="model" className="bisheng-label">{t('embeddingModel')}</label>
                     {isLoading ? (
                         <div className="flex items-center gap-2 p-3 border rounded-md bg-gray-50">
                             <LoadIcon className="w-4 h-4 animate-spin" />
-                            <span className="text-sm text-gray-600">正在加载模型列表...</span>
+                            <span className="text-sm text-gray-600">{t('loadingModelList')}</span>
                         </div>
                     ) : embeddings.length > 0 ? (
                         <ModelSelect
@@ -259,13 +259,13 @@ function CreateModal({ datalist, open, onOpenChange, onLoadEnd, mode = 'create',
                         />
                     ) : (
                         <div className="p-3 border rounded-md bg-gray-50 text-sm text-gray-600">
-                            暂无可用模型
+                            {t('noAvailableModel')}
                         </div>
                     )}
                     {mode === 'edit' && isModelChanged && (
                         <p className="text-red-500 text-sm mt-1 flex items-center gap-1">
                             <CircleAlert className="w-4 h-4" color="#ef4444" />
-                            修改 embedding 模型可能会消耗大量模型资源且耗时较久，请谨慎进行
+                            {t('embeddingModelWarning')}
                         </p>
                     )}
                 </div>
@@ -283,7 +283,7 @@ function CreateModal({ datalist, open, onOpenChange, onLoadEnd, mode = 'create',
                             disabled={isSubmitting}
                         >
                             {isSubmitting && <LoadIcon className="mr-1" />}
-                            完成创建
+                            {t('completeCreation')}
                         </Button>
                         <Button
                             type="submit"
@@ -343,7 +343,7 @@ export default function KnowledgeFile() {
                 if (lib && lib.state !== KnowledgeBaseStatus.Copying) {
                     message({
                         variant: 'success',
-                        description: `${todo.name} 复制完成`
+                        description: t('copyCompleted', { name: todo.name })
                     })
                     delete doing[todo.id]
                 }
@@ -421,12 +421,12 @@ export default function KnowledgeFile() {
 
     // copy
     const handleCopy = async (elem) => {
-        const newName = `${elem.name}的副本`;
+        const newName = t('copyName', { name: elem.name });
         if (newName.length > 200) {
             toast({
-                title: '操作失败',
+                title: t('operationFailed'),
                 variant: 'error',
-                description: '复制后的知识库名称超过字数限制'
+                description: t('copyNameExceedsLimit')
             });
 
             // 重置所有相关状态
@@ -447,7 +447,7 @@ export default function KnowledgeFile() {
         } catch (error) {
             message({
                 variant: 'error',
-                description: '复制失败'
+                description: t('copyFailed')
             });
         } finally {
             setCopyLoadingId(null);
@@ -574,7 +574,7 @@ export default function KnowledgeFile() {
                                                     <>
                                                         <LoaderCircle className="animate-spin" />
                                                         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-gray-800 text-xs px-2 py-1 rounded whitespace-nowrap border border-gray-300 shadow-sm">
-                                                            复制中
+                                                            {t('copying')}
                                                         </div>
                                                     </>
                                                 ) : (
@@ -609,7 +609,7 @@ export default function KnowledgeFile() {
                                                     >
                                                         <div className="flex gap-2 items-center">
                                                             <Settings className="w-4 h-4" />
-                                                            {t('设置')}
+                                                            {t('setting')}
                                                         </div>
                                                     </SelectItem>
                                                 </Tip>

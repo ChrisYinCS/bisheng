@@ -32,7 +32,7 @@ export default function HeaderMenu({ }) {
             <div className="px-4">
                 <NavLink to={'build/tools'} className="group flex gap-2 items-center px-8 py-2 rounded-md navlink">
                     <TabIcon className="text-muted-foreground group-hover:text-primary dark:group-hover:text-[#fff]"></TabIcon>
-                    <span className="text-sm font-bold text-muted-foreground group-hover:text-primary dark:group-hover:text-[#fff]">{t('build.tools')}</span>
+                    <span className="text-sm font-bold text-muted-foreground group-hover:text-primary dark:group-hover:text-[#fff]">{t('build.toolsTab')}</span>
                 </NavLink>
             </div>
             {user.role === 'admin' && <div className="px-4">

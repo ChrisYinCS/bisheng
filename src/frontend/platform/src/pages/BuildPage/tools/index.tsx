@@ -19,7 +19,8 @@ import ToolSet from "./ToolSet";
 const MANAGED_TOOLS = [
     'Dalle3绘画', 'Bing web搜索', '天眼查',
     'Firecrawl', 'Jina AI', 'SiliconFlow',
-    '发送邮件', '飞书消息', '联网搜索','代码执行器'
+    '发送邮件', '飞书消息', '联网搜索','代码执行器',
+    '时间', '计算器', '论文获取', '钉钉', '企业微信', '经济金融数据'
 ];
 
 interface TabToolsProps {
@@ -145,7 +146,7 @@ const TabTools = ({ select = null, onSelect }: TabToolsProps) => {
                             className="mt-4  text-[white]"
                             onClick={() => mcpDialogRef.current.open()}
                         >
-                            添加 MCP 服务器
+                            {t('addMcpServer')}
                         </Button>}
                         {type === 'mcp' && <Button
                             variant="outline"
@@ -157,7 +158,7 @@ const TabTools = ({ select = null, onSelect }: TabToolsProps) => {
                             }}
                         >
                             {btnLoading && <LoadIcon className="text-gray-800" />}
-                            刷新
+                            {t('refreshMcpServer')}
                         </Button>}
                     </div>
                     <Accordion type="single" collapsible className="w-full">
@@ -221,7 +222,7 @@ export const useMcpRefrensh = () => {
             console.log('刷新 :>> ', res);
             message({
                 variant: "success",
-                description: "刷新成功"
+                description: t('mcpRefreshSuccess')
             })
             setLoading(false);
         }

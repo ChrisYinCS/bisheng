@@ -108,7 +108,7 @@ services:
 
   frontend:
     container_name: bisheng-frontend
-    image: bisheng-frontend-oem:test-v3
+    image: bisheng-frontend-oem:tools-tab-final
     ports:
       - "3001:3001"
     environment:

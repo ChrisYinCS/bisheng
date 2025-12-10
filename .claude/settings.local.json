@@ -13,7 +13,9 @@
       "mcp__chrome-devtools__click",
       "mcp__chrome-devtools__fill",
       "Bash(docker exec:*)",
-      "Bash(docker-compose restart:*)"
+      "Bash(docker-compose restart:*)",
+      "Bash(dir:*)",
+      "Bash(Where-Object { $_Name -match \"tools|snapshot\" })"
     ],
     "deny": [],
     "ask": []

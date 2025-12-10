@@ -229,16 +229,16 @@ function ModelItem({ data, type, onDelete, onInput, onConfig }) {
                             <DialogTrigger asChild>
                                 <div className="flex items-center cursor-pointer ml-2">
                                     <Settings className=" text-blue-500" size={16} strokeWidth={2} />
-                                    <span className="ml-1 text-blue-500 text-xs">高级参数配置</span>
+                                    <span className="ml-1 text-blue-500 text-xs">{t('advancedParametersConfig')}</span>
                                 </div>
                             </DialogTrigger>
 
                             <DialogContent className="sm:max-w-[625px]">
                                 <DialogHeader>
-                                    <DialogTitle>高级参数配置</DialogTitle>
+                                    <DialogTitle>{t('advancedParametersConfig')}</DialogTitle>
                                 </DialogHeader>
                                 <div className="mt-4 text-gray-500">
-                                    <Label>请在下方的文本框中粘贴或输入你的高级参数配置</Label>
+                                    <Label>{t('advancedParametersConfigTooltip')}</Label>
                                     <Textarea
                                         value={inputAdvancedParams}
                                         onChange={(e) => {
@@ -266,13 +266,13 @@ function ModelItem({ data, type, onDelete, onInput, onConfig }) {
                                     />
                                     {jsonError && (
                                         <span className="text-red-500 text-xs mt-1 inline-block">
-                                            错误：无效的 JSON 格式。请检查你的输入
+                                            {t('invalidJsonFormat')}
                                         </span>
                                     )}
                                 </div>
                                 <DialogFooter className="mt-4">
-                                    <Button variant="outline" onClick={handleCloseDialog}>取消</Button>
-                                    <Button onClick={handleSaveAdvancedParams}>保存</Button>
+                                    <Button variant="outline" onClick={handleCloseDialog}>{t('cancel')}</Button>
+                                    <Button onClick={handleSaveAdvancedParams}>{t('save')}</Button>
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
@@ -339,7 +339,7 @@ function ModelItem({ data, type, onDelete, onInput, onConfig }) {
                 {model.model_type === 'llm' && (
                     <>
                         {['qwen', 'tencent', 'moonshot'].includes(type) && <div className="flex gap-2 items-center">
-                            <Label className="bisheng-label">联网搜索</Label>
+                            <Label className="bisheng-label">{t('webSearch')}</Label>
                             <Switch checked={isWebSearchEnabled} onCheckedChange={handleSwitchChange} />
                         </div>}
                         <div>
@@ -607,7 +607,7 @@ export default function ModelConfig({ id, onGetName, onBack, onReload, onBerforS
         </div>
         <div className="w-[50%] min-w-64 px-4 pb-10 mx-auto mt-6 h-[calc(100vh-220px)] overflow-y-auto">
             <div className="mb-2">
-                <Label className="bisheng-label">模型接口格式</Label>
+                <Label className="bisheng-label">{t('modelInterfaceFormat')}</Label>
                 <Select value={formData.type} disabled={id !== -1} onValueChange={handleTypeChange}>
                     <SelectTrigger>
                         <SelectValue placeholder="" />
@@ -630,7 +630,7 @@ export default function ModelConfig({ id, onGetName, onBack, onReload, onBerforS
                     document.getElementById('model_provider_name_error').style.display = !name || name.length > 100 ? 'block' : 'none'
                 }}></Input>
                 <span id="model_provider_name_error" style={{ display: 'none' }} className="text-red-500 text-xs">{
-                    formData.name ? '最多 100 个字符' : '不可为空'
+                    formData.name ? t('max100Characters') : t('cannotBeEmpty')
                 }</span>
             </div>
             <CustomForm
@@ -693,7 +693,7 @@ export default function ModelConfig({ id, onGetName, onBack, onReload, onBerforS
                 loading={isLoading}
                 onClick={handleSave}
             >
-                {isLoading ? '模型状态检测中' : t('model.save')}
+                {isLoading ? t('modelStatusDetecting') : t('model.save')}
             </LoadButton>
         </div>
     </div>

@@ -98,7 +98,7 @@ const TestDialog = forwardRef((props, ref) => {
                                         </TableCell>
                                         <TableCell>
                                             <Input
-                                                placeholder={`输入${schema.type || 'string'}类型值`}
+                                                placeholder={t('mcp.inputValuePlaceholder', { type: schema.type || 'string' })}
                                                 onChange={(e) => setParams(prev => ({
                                                     ...prev,
                                                     [name]: e.target.value
@@ -374,8 +374,8 @@ const McpServerEditorDialog = forwardRef(({ existingNames = [], onReload }, ref)
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
-                                            <SelectItem value="gaode1">高德地图（SSE 协议）</SelectItem>
-                                            <SelectItem value="gaode2">高德地图（streamable 协议）</SelectItem>
+                                            <SelectItem value="gaode1">{t('mcp.gaodeSse')}</SelectItem>
+                                            <SelectItem value="gaode2">{t('mcp.gaodeStreamable')}</SelectItem>
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>

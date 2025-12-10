@@ -595,7 +595,7 @@
     "workflow": "Workflow",
     "skill": "Skill",
     "workbench": "WorkBench",
-    "tools": "Tools",
+    "toolsTab": "Tools",
     "save": "Save",
     "online": "Online",
     "offline": "Offline",
@@ -708,6 +708,60 @@
     "enterSearchUrl": "Enter Search URL",
     "enterDeploymentName": "Enter Deployment Name",
     "editTool": "Edit Built-in Tool",
+    "required": "Required",
+    "tools": {
+      "dalle3": "Dalle3 Drawing",
+      "firecrawl": "Firecrawl",
+      "jina": "Jina AI",
+      "siliconflow": "SiliconFlow",
+      "email": "Send Email",
+      "feishu": "Lark Message",
+      "lark": "Lark Message",
+      "bing": "Bing Web Search",
+      "tianyancha": "Tianyancha",
+      "websearch": "Web Search",
+      "codeExecutor": "Code Executor",
+      "time": "Time",
+      "calculator": "Calculator",
+      "paper": "Paper Retrieval",
+      "dingding": "DingTalk",
+      "wechat": "WeChat Work",
+      "economic": "Economic Financial Data"
+    },
+    "toolDescriptions": {
+      "dalle3": "OpenAI text-to-image model",
+      "firecrawl": "Crawl web content from specified URL and convert it to Markdown format",
+      "jina": "Convert target URL content (supports PDF) to Markdown format for large model processing",
+      "siliconflow": "Generate high-quality images based on text prompts, supports Flux and Stable Diffusion models",
+      "email": "Send emails via SMTP protocol",
+      "lark": "Get Feishu one-on-one or group chat history, send messages to specified users or groups",
+      "bing": "Bing search engine, retrieves internet information such as weather, exchange rates, current events",
+      "tianyancha": "Query company information",
+      "websearch": "Search internet information, can be configured to use different search engines, currently supports Bing, Bocha, Jina Deep Search, SerpApi, Tavily",
+      "codeExecutor": "Complete programming tasks such as chart drawing and file processing by executing code",
+      "time": "Get current time",
+      "calculator": "Use Python built-in tools for mathematical expression calculations",
+      "paper": "Retrieve papers from Arxiv website, input is search keywords",
+      "dingding": "DingTalk group robot message sending tool",
+      "wechat": "WeChat Work robot sends group messages tool",
+      "economic": "Financial big data platform including stock, fund, futures market data and macroeconomic, company financial fundamentals data"
+    },
+    "economicToolDescriptions": {
+      "pmi": "China PMI (Purchasing Managers Index) monthly statistical data. Returns data including: monthly manufacturing PMI, manufacturing PMI year-on-year growth, non-manufacturing PMI, non-manufacturing PMI year-on-year growth.",
+      "ppi": "China Industrial Producer Price Index (PPI) monthly statistical data. Returns data including: month, current month PPI, current month year-on-year growth, current year PPI cumulative value.",
+      "cpi": "China Resident Consumer Price Index (CPI, same month last year=100) monthly statistical data. Returns data including: month, national current month CPI, national current month year-on-year growth, national current month month-on-month growth, national current year CPI cumulative value; urban current month CPI, urban current month year-on-year growth, urban current month month-on-month growth, urban current year CPI cumulative value; rural current month CPI, rural current month year-on-year growth, rural current month month-on-month growth, rural current year CPI cumulative value.",
+      "gdp": "China Gross Domestic Product (GDP) quarterly statistical data. Returns data including: quarter, current year cumulative GDP absolute value and year-on-year growth, primary, secondary, tertiary industry GDP absolute value and year-on-year growth."
+    },
+    "addMcpServer": "Add MCP Server",
+    "refreshMcpServer": "Refresh",
+    "mcpRefreshSuccess": "Refresh successful",
+    "mcpServer": "MCP Server",
+    "confirmDeleteMcp": "Confirm to delete MCP server?",
+    "mcp": {
+      "inputValuePlaceholder": "Enter {{type}} value",
+      "gaodeSse": "Gaode Map (SSE Protocol)",
+      "gaodeStreamable": "Gaode Map (Streamable Protocol)"
+    },
     "description": "Description",
     "dalleStyle": "Dalle Style",
     "enterStyle": "Enter Style",
@@ -1186,5 +1240,249 @@
     "reset": "Reset",
     "export": "Export",
     "listIsEmpty": "List is empty"
+  },
+  "toolApi": {
+    "websearch": {
+      "name": "Web Search",
+      "desc": "Perform web search using query and return results."
+    },
+    "sendEmail": {
+      "name": "Send Email",
+      "desc": "Send emails to single or multiple recipients (separate multiple email addresses with commas)."
+    },
+    "firecrawl": {
+      "name": "Web Crawler",
+      "desc": "Crawl web content from specified URL and convert it to structured format."
+    },
+    "lark": {
+      "name": "Lark Message",
+      "desc": "Get Feishu one-on-one or group chat history, send messages to specified users or groups."
+    },
+    "siliconflow": {
+      "name": "Image Generation",
+      "desc": "Generate high-quality images based on text prompts, supports various models."
+    },
+    "jina": {
+      "name": "Content Converter",
+      "desc": "Convert target URL content (supports PDF) to Markdown format for processing."
+    },
+    "dingding": {
+      "name": "DingTalk Message",
+      "desc": "Send messages via DingTalk group robot."
+    },
+    "wechat": {
+      "name": "WeChat Work Message",
+      "desc": "Send group messages via WeChat Work robot."
+    },
+    "paper": {
+      "name": "Paper Retrieval",
+      "desc": "Retrieve papers from Arxiv website, input is search keywords."
+    },
+    "calculator": {
+      "name": "Calculator",
+      "desc": "Use Python built-in tools for mathematical expression calculations."
+    },
+    "economic": {
+      "name": "Financial Data",
+      "desc": "Financial big data platform including stock, fund, futures market data and macroeconomic data."
+    },
+    "tianyancha": {
+      "name": "Company Query",
+      "desc": "Query company information."
+    },
+    "codeExecutor": {
+      "name": "Code Executor",
+      "desc": "Complete programming tasks such as chart drawing and file processing by executing code."
+    },
+    "time": {
+      "name": "Get Time",
+      "desc": "Return current time, use UTC+8 timezone if not specified."
+    },
+    "dalle3": {
+      "name": "Image Generation",
+      "desc": "OpenAI text-to-image model."
+    },
+    "bing": {
+      "name": "Bing Search",
+      "desc": "Bing search engine, retrieves internet information such as weather, exchange rates, current events."
+    },
+    "firecrawl_scrape": {
+      "name": "Single Page Scraping",
+      "desc": "Scrape and return the content of the specified URL page without crawling sub-pages."
+    },
+    "firecrawl_crawl": {
+      "name": "Deep Crawling",
+      "desc": "Scrape and return the content of the specified URL and all accessible sub-pages."
+    },
+    "jina_reader": {
+      "name": "Single Web Page Reader",
+      "desc": "Read and return the content of a single web page in Markdown format."
+    },
+    "lark_send_message": {
+      "name": "Send Message",
+      "desc": "Send messages to specified users or group chats."
+    },
+    "lark_get_messages": {
+      "name": "Get Chat History",
+      "desc": "Get historical messages from specified one-on-one chats or group chats."
+    },
+    "dingding_send": {
+      "name": "Send DingTalk Message",
+      "desc": "Send messages to DingTalk group chat."
+    },
+    "wechat_send": {
+      "name": "Send WeChat Work Message",
+      "desc": "Send messages to specified WeChat Work group chat."
+    },
+    "get_current_time": {
+      "name": "Get Current Time",
+      "desc": "Return current time, use UTC+8 timezone if not specified."
+    },
+    "code_interpreter": {
+      "name": "Code Interpreter",
+      "desc": "Execute Python or shell code and return results within 600 seconds."
+    },
+    "tianyancha_all_companys": {
+      "name": "Person's All Companies",
+      "desc": "Get all companies related to a person through company name or ID and person's name."
+    },
+    "tianyancha_search_company": {
+      "name": "Search Company",
+      "desc": "Get company list through keywords, including company name, type, establishment date, etc."
+    },
+    "tianyancha_base_info": {
+      "name": "Company Basic Information",
+      "desc": "Get company basic information through company name or ID."
+    },
+    "tianyancha_ip_info": {
+      "name": "Company Intellectual Property",
+      "desc": "Get company intellectual property information including patents, trademarks, etc."
+    },
+    "tianyancha_judicial_risk": {
+      "name": "Company Judicial Risk",
+      "desc": "Get company judicial risk information including court records, judgments."
+    },
+    "tianyancha_litigation": {
+      "name": "Company Legal Litigation",
+      "desc": "Get company legal litigation information and case details."
+    },
+    "tianyancha_business_info": {
+      "name": "Company Business Information",
+      "desc": "Get company business registration information and operational details."
+    },
+    "tianyancha_business_changes": {
+      "name": "Business Change History",
+      "desc": "Get company business registration change history records."
+    },
+    "tianyancha_shareholders": {
+      "name": "Company Shareholders",
+      "desc": "Get company shareholder information and shareholding structure."
+    },
+    "tianyancha_risks": {
+      "name": "Company Risk Overview",
+      "desc": "Get comprehensive company risk information and assessment."
+    },
+    "stock_realtime": {
+      "name": "Real-time Stock Quotes",
+      "desc": "Get real-time stock market quotes and trading information."
+    },
+    "stock_history": {
+      "name": "Historical Stock Data",
+      "desc": "Get historical stock market data and price trends."
+    },
+    "social_financing": {
+      "name": "Social Financing Increment",
+      "desc": "Get social financing scale increment data and trends."
+    },
+    "money_supply": {
+      "name": "Money Supply",
+      "desc": "Get money supply data including M0, M1, M2 indicators."
+    },
+    "retail_sales": {
+      "name": "Total Retail Sales",
+      "desc": "Get total social consumer goods retail sales data."
+    },
+    "bond_yield": {
+      "name": "US-China Bond Yield",
+      "desc": "Get comparison data of US and China government bond yields."
+    }
+  },
+  "toolParam": {
+    "sendEmail": {
+      "receiver": "Email address to receive the email, determining the email recipient",
+      "subject": "Email subject, summary of the email content",
+      "content": "The actual content of the email"
+    },
+    "websearch": {
+      "query": "Keywords for search query"
+    },
+    "jina_reader": {
+      "url": "URL of the webpage to scrape"
+    },
+    "firecrawl": {
+      "url": "Starting URL to crawl"
+    },
+    "lark_send_message": {
+      "content": "Text content of the message to send",
+      "receive_id": "ID of the message recipient",
+      "receive_id_type": "User ID type, optional values: open_id (identifies a user in a specific app); union_id (identifies a user under a specific app developer); user_id (identifies a user within a specific tenant); email (identifies a user by their real email); chat_id (identifies a group chat by group ID)"
+    },
+    "lark_get_messages": {
+      "container_id": "ID of the direct chat, group chat, or topic",
+      "container_id_type": "Container type. Options: chat (includes direct chat p2p and group chat); thread: topic",
+      "start_time": "Start time for querying historical messages, in timestamp (seconds). Note: thread container type does not support getting messages within a specific time range",
+      "end_time": "End time for querying historical messages, in timestamp (seconds). Note: thread container type does not support getting messages within a specific time range",
+      "page_size": "Page size, number of data items returned per request, default 20, range 1-50",
+      "sort_type": "Options: ByCreateTimeAsc (sort by message creation time ascending); ByCreateTimeDesc (sort by message creation time descending)",
+      "page_token": "Page token, leave empty for first request to start from beginning; when there are more items in paginated results, a new page_token will be returned, use this page_token for next request"
+    },
+    "calculator": {
+      "expression": "Mathematical expression to calculate"
+    },
+    "arxiv_search": {
+      "query": "Keywords for paper search"
+    },
+    "tianyancha": {
+      "company_name": "Company name to query"
+    },
+    "code_executor": {
+      "code": "Python code to execute"
+    },
+    "dalle3": {
+      "prompt": "Description text for image generation",
+      "size": "Image size dimensions",
+      "quality": "Quality of image generation"
+    },
+    "wechat_send": {
+      "url": "Webhook address of the WeChat Work robot",
+      "message": "Content of the message to send"
+    },
+    "siliconflow": {
+      "prompt": "Prompt to generate image description",
+      "negative_prompt": "Content that should not be included in the image"
+    },
+    "dingtalk": {
+      "webhook": "Custom robot webhook address",
+      "content": "Text message content to send"
+    },
+    "jina_reader": {
+      "url": "Target webpage to fetch"
+    },
+    "firecrawl": {
+      "url": "Starting URL to crawl"
+    },
+    "tianyancha": {
+      "query": "Search keywords (company name, company ID, registration number or unified social credit code)"
+    },
+    "stock": {
+      "prefix": "Prefix. If 'stock_symbol' is a stock code, use s_; if 'stock_symbol' is an index code, leave empty.",
+      "stock_exchange": "Stock exchange abbreviation. Exchange where the stock is listed or where the index is published. Options: 'sh' (Shanghai Stock Exchange), 'sz' (Shenzhen Stock Exchange), 'bj' (Beijing Stock Exchange)",
+      "stock_symbol": "6-digit stock or index code. Reference: If not provided, may need to search online. SSE stocks usually start with 6, SZSE stocks with 0 or 3, BSE stocks with 8. SSE indices usually start with 000, SZSE indices with 399. The same index may be published on both exchanges.",
+      "date": "Date to query, in '2024-03-26' format"
+    },
+    "economic": {
+      "start_date": "Start month, in YYYY-MM-DD format",
+      "end_date": "End month, in YYYY-MM-DD format"
+    }
   }
 }
