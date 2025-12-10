@@ -178,5 +178,12 @@
   "filePathVarName": "文件路径变量名称",
   "filePathVarTip": "文件路径将会存储在此变量中，后续可在代码节点中使用",
   "uploadImageFile": "上传图片文件",
-  "uploadImageFileTip": "提取上传文件中的图片文件，当助手或大模型节点使用多模态大模型时，可传入此图片。"
+  "uploadImageFileTip": "提取上传文件中的图片文件，当助手或大模型节点使用多模态大模型时，可传入此图片。",
+  "fileTypeSelect": {
+    "documentType": "文档（pdf、txt、md、html、xls、xlsx、doc、docx、ppt、pptx）",
+    "imageType": "图片（png、jpg、jpeg、bmp）",
+    "allTypes": "全部类型",
+    "document": "文档",
+    "image": "图片"
+  }
 }

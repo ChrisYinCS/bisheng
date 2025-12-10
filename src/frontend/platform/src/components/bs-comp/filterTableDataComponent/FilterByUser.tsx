@@ -2,6 +2,7 @@ import MultiSelect from "@/components/bs-ui/select/multi";
 import { getUsersApi } from "@/controllers/API/user";
 import { debounce } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface UserOption {
     label: string;
@@ -9,6 +10,7 @@ interface UserOption {
 }
 
 export default function FilterByUser({ value, onChange }) {
+    const { t } = useTranslation();
     const { users, loadUsers, searchUser, loadMoreUsers } = useUsers();
 
     return (
@@ -17,7 +19,7 @@ export default function FilterByUser({ value, onChange }) {
                 contentClassName="overflow-y-auto max-w-[200px]"
                 options={users}
                 value={value}
-                placeholder="用户名"
+                placeholder={t('log.userName')}
                 onLoad={() => loadUsers("")}
                 onSearch={searchUser}
                 onScrollLoad={loadMoreUsers}

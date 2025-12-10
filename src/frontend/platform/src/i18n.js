@@ -14,7 +14,7 @@ i18n.use(Backend)
     .init({
         partialBundledLanguages: true,
         ns: ['bs', 'flow'],
-        lng: 'zh', // userLanguage === 'zh' ? userLanguage : 'en', // 除中文即英文
+        lng: 'en', // userLanguage === 'zh' ? userLanguage : 'en', // 除中文即英文
         backend: {
             loadPath: __APP_ENV__.BASE_URL + '/locales/{{lng}}/{{ns}}.json?v=' + json.version
         },

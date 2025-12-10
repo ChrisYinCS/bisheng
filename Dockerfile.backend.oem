@@ -1,0 +1,13 @@
+# Custom backend image with modified template data
+FROM cr.dataelem.com/dataelement/bisheng-backend:latest
+
+# Copy the modified template.json with English names and descriptions
+# This file contains the template definitions that will be loaded into the database
+COPY src/backend/bisheng/database/data/template.json /app/bisheng/database/data/template.json
+
+# Optional: Also copy any other modified data files if needed
+# COPY src/backend/bisheng/database/data/t_gpts_tools.json /app/bisheng/database/data/t_gpts_tools.json
+# COPY src/backend/bisheng/database/data/t_gpts_tools_type.json /app/bisheng/database/data/t_gpts_tools_type.json
+
+# Keep all other configurations from the base image
+# The entrypoint and CMD will be inherited from the base image

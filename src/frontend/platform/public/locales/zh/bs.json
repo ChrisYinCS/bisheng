@@ -914,7 +914,16 @@
     "qaContent": "QA 内容",
     "empty": "空空如也",
     "selectQaLib": "请选择 QA 知识库",
-    "detailedSession": "详细会话"
+    "detailedSession": "详细会话",
+    "userGroup": "用户组",
+    "startDate": "开始日期",
+    "endDate": "结束日期",
+    "like": "赞",
+    "dislike": "踩",
+    "copied": "复制",
+    "contentSecurityReviewResult": "实时内容安全审查结果",
+    "violation": "违规",
+    "passed": "通过"
   },
   "tag": {
     "labelMaxLength": "标签名不能超过10个字符",
@@ -1181,5 +1190,11 @@
   "com_sop_select_file": "选择文件",
   "more": "更多",
   "chatTips": "1. 请遵守《中华人民共和国网络安全法》《中华人民共和国数据安全法》《中华人民共和国个人信息保护法》及《生成式人工智能服务安全基本要求》；\n2. 禁止上传涉及公司保密管理规定范围内的保密数据；\n3. 禁止上传包含个人隐私信息的数据；\n4. 禁止上传包含恶意程序或病毒的文件；\n5. 禁止使用 AI 生成攻击性代码；\n6. 禁止向 AI 提问包括但不限于涉爆涉恐涉黄及危害国家安全及公共安全的违法不良信息；\n7. AI 生成内容受到公司保密管理规定约束。用户应根据实际情况判断生成内容的合理性，避免 AI 幻觉造成的风险。",
-  "com_preview_type_unsupported": "此文件暂不支持预览"
+  "com_preview_type_unsupported": "此文件暂不支持预览",
+  "common": {
+    "search": "查询",
+    "reset": "重置",
+    "export": "导出",
+    "listIsEmpty": "列表是空的"
+  }
 }

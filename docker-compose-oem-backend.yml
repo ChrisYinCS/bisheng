@@ -1,0 +1,44 @@
+# Example docker-compose modification for backend OEM deployment
+# This shows only the backend service modification
+# Merge this with your main docker-compose.yml
+
+version: '3.8'
+
+services:
+  # ... other services remain unchanged ...
+
+  backend:
+    container_name: bisheng-backend
+    # Change the image to use your custom OEM build
+    image: bisheng-backend-oem:latest
+    # Or if pushing to registry:
+    # image: your-registry.com/bisheng-backend-oem:latest
+
+    ports:
+      - "7860:7860"
+
+    environment:
+      TZ: Asia/Shanghai
+      BS_MILVUS_CONNECTION_ARGS: '{"host":"milvus","port":"19530","user":"","password":"","secure":false}'
+      BS_MILVUS_IS_PARTITION: 'true'
+      BS_MILVUS_PARTITION_SUFFIX: '1'
+      BS_ELASTICSEARCH_URL: 'http://elasticsearch:9200'
+      BS_ELASTICSEARCH_SSL_VERIFY: '{}'
+      BS_MINIO_SCHEMA: 'false'
+      BS_MAX_WORKERS: '2'
+      BS_WORKER_TIMEOUT: '300'
+      # ... other environment variables remain the same ...
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      milvus:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+
+    restart: on-failure
+
+  # ... other services remain unchanged ...

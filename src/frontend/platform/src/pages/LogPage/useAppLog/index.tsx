@@ -260,13 +260,13 @@ export default function AppUseLog() {
                 <div className="w-[200px] relative">
                     <Select value={filters.feedback} onValueChange={(value) => dispatch({ type: 'SET_FILTER', payload: { ['feedback']: value } })}>
                         <SelectTrigger className="w-[200px]">
-                            <SelectValue placeholder="用户反馈" />
+                            <SelectValue placeholder={t('log.userFeedback')} />
                         </SelectTrigger>
                         <SelectContent className="max-w-[200px] break-all">
                             <SelectGroup>
-                                <SelectItem value={'like'}>赞</SelectItem>
-                                <SelectItem value={'dislike'}>踩</SelectItem>
-                                <SelectItem value={'copied'}>复制</SelectItem>
+                                <SelectItem value={'like'}>{t('log.like')}</SelectItem>
+                                <SelectItem value={'dislike'}>{t('log.dislike')}</SelectItem>
+                                <SelectItem value={'copied'}>{t('log.copied')}</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
@@ -274,12 +274,12 @@ export default function AppUseLog() {
                 {appConfig.isPro && <div className="w-[200px] relative">
                     <Select value={filters.sensitive_status} onValueChange={(value) => dispatch({ type: 'SET_FILTER', payload: { ['sensitive_status']: value } })} >
                         <SelectTrigger className="w-[200px]">
-                            <SelectValue placeholder="实时内容安全审查结果" />
+                            <SelectValue placeholder={t('log.contentSecurityReviewResult')} />
                         </SelectTrigger>
                         <SelectContent className="max-w-[200px] break-all">
                             <SelectGroup>
-                                <SelectItem value={'2'}>违规</SelectItem>
-                                <SelectItem value={'1'}>通过</SelectItem>
+                                <SelectItem value={'2'}>{t('log.violation')}</SelectItem>
+                                <SelectItem value={'1'}>{t('log.passed')}</SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
@@ -297,20 +297,20 @@ export default function AppUseLog() {
                     }
 
                     filterData({ ...filters, dateRange: [adjustedStart, adjustedEnd] })
-                }} >查询</Button>
-                <Button onClick={resetClick} variant="outline">重置</Button>
+                }} >{t('common.search')}</Button>
+                <Button onClick={resetClick} variant="outline">{t('common.reset')}</Button>
                 <Button onClick={handleExport} disabled={auditing}>
-                    {auditing && <LoadIcon className="mr-1" />}导出</Button>
+                    {auditing && <LoadIcon className="mr-1" />}{t('common.export')}</Button>
             </div>
             <Table>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[200px]">{t('log.appName')}</TableHead>
                         <TableHead>{t('log.userName')}</TableHead>
-                        <TableHead>用户组</TableHead>
+                        <TableHead>{t('log.userGroup')}</TableHead>
                         <TableHead>{t('createTime')}</TableHead>
                         <TableHead>{t('log.userFeedback')}</TableHead>
-                        {appConfig.isPro && <TableHead>实时内容安全审查结果</TableHead>}
+                        {appConfig.isPro && <TableHead>{t('log.contentSecurityReviewResult')}</TableHead>}
                         <TableHead className="text-right">{t('operations')}</TableHead>
                     </TableRow>
                 </TableHeader>
@@ -348,8 +348,8 @@ export default function AppUseLog() {
                                 </div>
                             </TableCell>
                             {appConfig.isPro && <TableCell>
-                                {el.sensitive_status === 1 ? <Badge variant="outline" className="text-green-500">通过</Badge>
-                                    : <Badge variant="outline" className="text-red-500">违规</Badge>
+                                {el.sensitive_status === 1 ? <Badge variant="outline" className="text-green-500">{t('log.passed')}</Badge>
+                                    : <Badge variant="outline" className="text-red-500">{t('log.violation')}</Badge>
                                 }
                             </TableCell>}
                             <TableCell className="text-right" onClick={() => {

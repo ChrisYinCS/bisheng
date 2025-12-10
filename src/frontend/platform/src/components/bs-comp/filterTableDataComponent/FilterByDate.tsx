@@ -1,5 +1,6 @@
 import { DatePicker } from "@/components/bs-ui/calendar/datePicker";
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
 interface DateFilterProps {
     value?: [Date | null, Date | null];
@@ -7,6 +8,7 @@ interface DateFilterProps {
 }
 
 export default function FilterByDate({ value = [null, null], onChange }: DateFilterProps) {
+    const { t } = useTranslation();
     const [startDate, endDate] = value;
 
     /**
@@ -42,14 +44,14 @@ export default function FilterByDate({ value = [null, null], onChange }: DateFil
             <div className="w-[180px] relative">
                 <DatePicker
                     value={startDate}
-                    placeholder="开始日期"
+                    placeholder={t('log.startDate')}
                     onChange={(v) => handleDateChange("start", v)}
                 />
             </div>
             <div className="w-[180px] relative">
                 <DatePicker
                     value={endDate}
-                    placeholder="结束日期"
+                    placeholder={t('log.endDate')}
                     onChange={(v) => handleDateChange("end", v)}
                 />
             </div>

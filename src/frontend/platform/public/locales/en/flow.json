@@ -177,5 +177,12 @@
   "filePathVarName": "File path variable name",
   "filePathVarTip": "The file path will be stored in this variable and can be used later in the code node",
   "uploadImageFile": "Upload image file",
-  "uploadImageFileTip": "Extract image files from the uploaded file. When the assistant or LLM node uses a multimodal model, the image can be passed in."
+  "uploadImageFileTip": "Extract image files from the uploaded file. When the assistant or LLM node uses a multimodal model, the image can be passed in.",
+  "fileTypeSelect": {
+    "documentType": "Documents (pdf, txt, md, html, xls, xlsx, doc, docx, ppt, pptx)",
+    "imageType": "Images (png, jpg, jpeg, bmp)",
+    "allTypes": "All Types",
+    "document": "Documents",
+    "image": "Images"
+  }
 }

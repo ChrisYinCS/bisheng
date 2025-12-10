@@ -1,6 +1,7 @@
 import { MultiSelect } from "@/components/bs-ui/multiSelect.tsx";
 import { getGroupsApi } from "@/controllers/API/log";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface AppOption {
     label: string;
@@ -8,6 +9,7 @@ interface AppOption {
 }
 
 export default function FilterByApp({ value, onChange }) {
+    const { t } = useTranslation();
     const { apps, loadApps, searchApps, loadMoreApps } = useApps();
 
     useEffect(() => {
@@ -25,7 +27,7 @@ export default function FilterByApp({ value, onChange }) {
                 onSearch={searchApps}
                 onLoadMore={loadMoreApps}
                 contentClassName="max-w-[320px]"
-                placeholder="应用名称"
+                placeholder={t('log.appName')}
             />
         </div>
     );

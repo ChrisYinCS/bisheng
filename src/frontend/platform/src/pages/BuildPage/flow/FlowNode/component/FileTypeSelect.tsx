@@ -2,6 +2,7 @@ import { Label } from "@/components/bs-ui/label";
 import { Select, SelectContent, SelectTrigger } from "@/components/bs-ui/select";
 import { Check } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface FileTypeSelectProps {
     data: {
@@ -11,19 +12,21 @@ interface FileTypeSelectProps {
     onChange: (value: 'all' | 'file' | 'image') => void;
 }
 
-const options = [
-    {
-        label: '文档（pdf、txt、md、html、xls、xlsx、doc、docx、ppt、pptx）',
-        value: 'file'
-    },
-    {
-        label: '图片（png、jpg、jpeg、bmp）',
-        value: 'image'
-    }
-];
 
 export default function FileTypeSelect({ data, onChange }: FileTypeSelectProps) {
+    const { t } = useTranslation('flow');
     const [type, setType] = useState(data.value)
+
+    const options = [
+        {
+            label: t('fileTypeSelect.documentType'),
+            value: 'file'
+        },
+        {
+            label: t('fileTypeSelect.imageType'),
+            value: 'image'
+        }
+    ];
     const handleSelect = (clickedValue: 'file' | 'image') => {
         let newValue: 'all' | 'file' | 'image' = type;
 
@@ -42,10 +45,10 @@ export default function FileTypeSelect({ data, onChange }: FileTypeSelectProps) 
 
     const getDisplayText = () => {
         switch (type) {
-            case 'all': return '全部类型';
-            case 'file': return '文档';
-            case 'image': return '图片';
-            default: return '全部类型';
+            case 'all': return t('fileTypeSelect.allTypes');
+            case 'file': return t('fileTypeSelect.document');
+            case 'image': return t('fileTypeSelect.image');
+            default: return t('fileTypeSelect.allTypes');
         }
     };
 

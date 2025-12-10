@@ -1,6 +1,7 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/bs-ui/select";
 import { getUserGroupsApi } from "@/controllers/API/user";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface Group {
     id: string;
@@ -8,6 +9,7 @@ interface Group {
 }
 
 export default function FilterByUsergroup({ value, onChange }) {
+    const { t } = useTranslation();
     const { groups, loading } = useGroups();
 
     return (
@@ -17,7 +19,7 @@ export default function FilterByUsergroup({ value, onChange }) {
                     {value ? (
                         <span>{groups.find(g => g.id === value)?.group_name}</span>
                     ) : (
-                        <SelectValue placeholder="用户组" />
+                        <SelectValue placeholder={t('log.userGroup')} />
                     )}
                 </SelectTrigger>
                 <SelectContent className="max-w-[200px] break-all">
@@ -33,7 +35,7 @@ export default function FilterByUsergroup({ value, onChange }) {
                         ))}
                         {!loading && groups.length === 0 && (
                             <div className="text-gray-400 text-sm px-2 py-1">
-                                列表是空的
+                                {t('common.listIsEmpty')}
                             </div>
                         )}
                     </SelectGroup>

@@ -1,6 +1,40 @@
+# Start from the base frontend image
 FROM dataelement/bisheng-frontend:v2.3.0-beta1
 
-# Copy modified assets
+# Install Node.js for building
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Create a temporary directory for building
+WORKDIR /tmp/build
+
+# Copy package files and local packages
+COPY src/frontend/platform/package*.json ./
+COPY src/frontend/platform/local-packages ./local-packages
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code with our modifications
+COPY src/frontend/platform .
+
+# Copy the modified locales with our translations
+COPY src/frontend/platform/public/locales ./public/locales
+
+# Build the application
+ENV NODE_ENV=production
+RUN npm run build
+
+# Replace the platform files with our built version
+RUN rm -rf /usr/share/nginx/html/platform/*
+RUN cp -r build/* /usr/share/nginx/html/platform/
+
+# Clean up build directory
+RUN rm -rf /tmp/build
+
+# Copy modified assets (in case they're missing from build)
 COPY src/frontend/platform/public/assets/bisheng/favicon.ico /usr/share/nginx/html/platform/assets/bisheng/favicon.ico
 COPY src/frontend/platform/public/assets/bisheng/login-logo-big.png /usr/share/nginx/html/platform/assets/bisheng/login-logo-big.png
 COPY src/frontend/platform/public/assets/bisheng/login-logo-dark.png /usr/share/nginx/html/platform/assets/bisheng/login-logo-dark.png
@@ -10,12 +44,6 @@ COPY src/frontend/platform/public/assets/bisheng/logo.jpeg /usr/share/nginx/html
 
 # Copy favicon to client root directory for workspace pages
 COPY src/frontend/platform/public/assets/bisheng/favicon.ico /usr/share/nginx/html/client/favicon.ico
-
-# Copy modified localization files
-COPY src/frontend/platform/public/locales/en/bs.json /usr/share/nginx/html/platform/locales/en/bs.json
-COPY src/frontend/platform/public/locales/zh/bs.json /usr/share/nginx/html/platform/locales/zh/bs.json
-COPY src/frontend/platform/public/locales/en/flow.json /usr/share/nginx/html/platform/locales/en/flow.json
-COPY src/frontend/platform/public/locales/zh/flow.json /usr/share/nginx/html/platform/locales/zh/flow.json
 
 # Copy modified client translation files
 COPY src/frontend/client/src/locales/en/translation.json /usr/share/nginx/html/client/locales/en/translation.json
@@ -31,6 +59,10 @@ RUN sed -i 's/<title>BISHENG<\/title>/<title>来也智能体平台<\/title>/' /u
 
 # Inject inline script for dynamic title switching based on language
 RUN sed -i '/<\/head>/i \  <script>\n    // Dynamic title update based on language\n    (function() {\n      const titles = {\n        '\''zh-Hans'\'': '\''来也智能体平台'\'',\n        '\''zh-Hant'\'': '\''來也智能體平台'\'',\n        '\''en'\'': '\''Laiye Agents Platform'\'',\n        '\''fr'\'': '\''Laiye Agents Platform'\'',\n        '\''ja'\'': '\''Laiyeエージェントプラットフォーム'\''\n      };\n\n      function updateTitle() {\n        const lang = localStorage.getItem('\''i18nextLng'\'') || navigator.language || '\''en'\'';\n        const titleKey = lang.startsWith('\''zh'\'') ? lang : lang.split('\''-'\'')[0];\n        const newTitle = titles[titleKey] || titles['\''en'\''];\n\n        if (document.title !== newTitle) {\n          document.title = newTitle;\n        }\n      }\n\n      // Update title immediately\n      updateTitle();\n\n      // Listen for language changes\n      window.addEventListener('\''storage'\'', function(e) {\n        if (e.key === '\''i18nextLng'\'') {\n          updateTitle();\n        }\n      });\n\n      // Also listen for custom events from i18next\n      window.addEventListener('\''languageChanged'\'', updateTitle);\n\n      // Periodic check as fallback\n      setInterval(updateTitle, 1000);\n    })();\n  <\/script>' /usr/share/nginx/html/client/index.html
+
+# Copy nginx configuration files
+COPY docker-oem/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY docker-oem/nginx/conf.d /etc/nginx/conf.d
 
 # Copy Office configuration files
 COPY docker-oem/office/bisheng/ /usr/share/nginx/html/office/
