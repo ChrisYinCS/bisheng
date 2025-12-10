@@ -108,7 +108,7 @@ services:
 
   frontend:
     container_name: bisheng-frontend
-    image: bisheng-frontend-oem:tools-tab-final
+    image: bisheng-frontend-oem:flow-i18n-fix
     ports:
       - "3001:3001"
     environment:

@@ -20,7 +20,7 @@ export default function VarTextareaUploadItem({ nodeId, data, onChange, onValida
     const { files, handleFileUpload, handleFileRemove } = useFileUpload(data.value?.files || [], handleFilesChange);
 
     const [error, setError] = useState(false)
-    const { t } = useTranslation()
+    const { t } = useTranslation('flow')
     useEffect(() => {
         data.required && onValidate(() => {
             if (!data.value?.msg?.trim() && data.value?.files.length === 0) {
@@ -37,7 +37,7 @@ export default function VarTextareaUploadItem({ nodeId, data, onChange, onValida
         <div className='node-item mb-4 nodrag' data-key={data.key}>
             <div className="flex justify-between items-center">
                 <Label className="flex items-center bisheng-label">
-                    消息内容变量
+                    {t("messageContentVariable")}
                 </Label>
                 <Badge variant="outline" className="bg-[#E6ECF6] text-[#2B53A0]">{data.key}</Badge>
             </div>

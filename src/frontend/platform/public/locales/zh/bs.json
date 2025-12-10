@@ -322,7 +322,16 @@
     "varOptionRequired": "请输入选项内容",
     "optionRepeated": "选项重复",
     "incorrectIdFormatMessage": "ID格式有误（包含字符和数字组成的5位字符）",
-    "idAlreadyExistsMessage": "该ID已存在"
+    "idAlreadyExistsMessage": "该ID已存在",
+    "userInputLabel": "用户输入内容",
+    "userInputPlaceholder": "请输入用户输入内容",
+    "messageContentVariable": "消息内容变量",
+    "noInteraction": "无交互",
+    "chooseInteraction": "选择型交互",
+    "chooseInteractionTooltip": "用户可以从预定义选项中选择一个",
+    "inputInteraction": "输入型交互",
+    "inputInteractionTooltip": "用户可以输入自定义文本",
+    "optionsCannotBeEmpty": "选项不可为空"
   },
   "lib": {
     "knowledgeBaseId": "知识库ID",

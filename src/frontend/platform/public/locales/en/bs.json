@@ -482,7 +482,16 @@
     "varOptionRequired": "options are required",
     "optionRepeated": "Option repeated",
     "incorrectIdFormatMessage": "Incorrect ID format (should be a 5-character combination of letters and numbers)",
-    "idAlreadyExistsMessage": "This ID already exists"
+    "idAlreadyExistsMessage": "This ID already exists",
+    "userInputLabel": "User Input Content",
+    "userInputPlaceholder": "Please enter user input content",
+    "messageContentVariable": "Message Content Variable",
+    "noInteraction": "No Interaction",
+    "chooseInteraction": "Choice Interaction",
+    "chooseInteractionTooltip": "Users can select from predefined options",
+    "inputInteraction": "Input Interaction",
+    "inputInteractionTooltip": "Users can input custom text",
+    "optionsCannotBeEmpty": "Options cannot be empty"
   },
   "lib": {
     "knowledgeBaseId": "Knowledge Base ID",
